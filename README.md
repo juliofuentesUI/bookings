@@ -1,13 +1,17 @@
 # Project Name
 
-> Project description
+> Frontend Capstone Project: AirBnb
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/team-200-ok/reviews
+  - https://github.com/team-200-ok/reviews-proxy
+  - https://github.com/team-200-ok/bookings
+  - https://github.com/team-200-ok/bookings-proxy
+  - https://github.com/team-200-ok/related-listings
+  - https://github.com/team-200-ok/related-listings-proxy
+  - https://github.com/team-200-ok/overview-carousel
+  - https://github.com/team-200-ok/overview-carousel-proxy
 
 ## Table of Contents
 
