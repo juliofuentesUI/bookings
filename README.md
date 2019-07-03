@@ -10,8 +10,8 @@
   - https://github.com/team-200-ok/bookings-proxy
   - https://github.com/team-200-ok/related-listings
   - https://github.com/team-200-ok/related-listings-proxy
-  - https://github.com/team-200-ok/overview-carousel
-  - https://github.com/team-200-ok/overview-carousel-proxy
+  - https://github.com/team-200-ok/gallery-modal-overview
+  - https://github.com/team-200-ok/gallery-modal-overview-proxy
 
 ## Table of Contents
 
