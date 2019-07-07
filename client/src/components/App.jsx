@@ -1,5 +1,6 @@
 import React from 'react';
 import Dates from './Dates.jsx';
+import Guests from './Guests.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,12 +18,15 @@ class App extends React.Component {
         <p className='perNight'>per night</p>
         <div className='bookingFields'>
           <Dates />
-          {/* <Guests />
-          <Quote /> */}
-          <button>Book</button>
+          <Guests />
+          {/* <Quote /> */}
+          <button className='bookBtn'>Book</button>
           <p className='noCharge'>You won't be charged yet</p>
         </div>
-        <p className='highlight'>This place is getting a lot of attention.</p>
+        <p className='highlight'>
+          This place is getting a lot of attention.
+          <img src='https://a0.muscache.com/airbnb/static/packages/icon-uc-light-bulb.1ffc0407.gif' className='lightBulb'/>
+        </p>
         <p className='successMetric'>It’s been viewed 500+ times in the past week.</p>
       </div>
     )
