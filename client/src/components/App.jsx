@@ -16,6 +16,16 @@ class App extends React.Component {
         <h1 className='dollarSign'>$</h1>
         <h1 className='price'>68</h1>
         <p className='perNight'>per night</p>
+
+        <div className='starContainer'>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
+          <p className='reviewCount'>214</p>
+        </div>
+
         <div className='bookingFields'>
           <Dates />
           <Guests />
@@ -23,6 +33,7 @@ class App extends React.Component {
           <button className='bookBtn'>Book</button>
           <p className='noCharge'>You won't be charged yet</p>
         </div>
+
         <p className='highlight'>
           This place is getting a lot of attention.
           <img src='https://a0.muscache.com/airbnb/static/packages/icon-uc-light-bulb.1ffc0407.gif' className='lightBulb'/>
