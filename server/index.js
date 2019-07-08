@@ -5,6 +5,7 @@ const port = 3000;
 const Listings = require('./db/index.js').Listings;
 const Dates = require('./db/index.js').Dates;
 const Listings_Dates = require('./db/index.js').Listings_Dates;
+const Test_Listings = require('./db/index.js').Test_Listings;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -43,4 +44,35 @@ app.get('/rooms/bookings/listings_dates', (req, res) => {
   })
 })
 
+// NEW CODE
+
+app.get('/rooms/bookings/test_listings', (req, res) => {
+  Test_Listings.findAll()
+  .then((results) => {
+    res.send(results); 
+  })
+  .catch((err) => {
+    console.log(err);
+    res.send(err);
+  });
+
+  // Test_Listings.findOne({
+  //   where: {
+  //     id: req.params.listing_id
+  //   }
+  // })
+  // .then((results) => {
+  //   res.send(results);
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  //   res.send(err);
+  // });
+})
+
+//
+
+
 app.listen(port, console.log(`${port} is lisenting!`));
+
+module.exports = app;
