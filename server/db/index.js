@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 const connection = new Sequelize('bookings', 'root', null, {
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
+  logging: false
 })
 
 connection
