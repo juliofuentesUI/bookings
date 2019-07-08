@@ -46,7 +46,7 @@ class Dates extends React.Component {
             color: this.state.checkInText
           }}>Check-in</div>
           
-          <div className='arrow'>
+          <div className='datesArrow'>
             <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png'/>
           </div>
           

@@ -52,7 +52,6 @@
 }
 
 .stars {
-  /* border: 1px solid #000; */
   height: 9px;
   width: auto;
   margin: 0 2px 0 0;
@@ -60,7 +59,6 @@
 }
 
 .reviewCount {
-  /* border: 1px solid #000; */
   font-size: 11px;
   font-weight: 500;
   margin: -2px 0 0 0;
@@ -71,7 +69,6 @@
   clear: left;
   border-top: 1px solid #e4e4e4;
   border-bottom: 1px solid #e4e4e4;
-  /* margin: 60px 0 25px 0; */
   margin: 20px 0 25px 0;
   height: 272px;
 }
@@ -129,7 +126,7 @@
   height: 20px;
   width: auto;
   padding: 3px 5px;
-  margin: 7px;
+  margin: 7px 7px 7px 0;
   border: 1px solid #fff;
   border-radius: 4px;
   font-family: 'Raleway', 'Montserrat', 'Roboto', Arial;
@@ -140,22 +137,80 @@
   float: left;
 }
 
-.arrow {
-  float: left;
-}
-
 img {
   width: 30px;
   height: auto;
   margin: 10px 0 0 0;
 }
 
-.downArrow {
+.datesArrow {
+  float: left;
+}
+
+.guestsArrow {
   width: 25px;
   height: 25px;
   float: right;
   margin: 8px 0;
   padding: 0 10px 0 0;
+}
+
+.guestsPanel {
+  background-color: #fff;
+  border-radius: 3px;
+  position: absolute;
+  height: 300px;
+  width: 294px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+  padding: 0 16px;
+}
+
+.guestsType {
+  border: 1px solid #fff;
+  /* height: 34px; */
+  height: auto;
+  width: 294px;
+  margin: 16px auto 0 auto;
+  font-family: 'Montserrat', 'Roboto', Arial;
+}
+
+.guestsOptionAdults {
+  margin: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.guestsOption {
+  margin: 10px 0 5px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.extraOptionInfo {
+  font-size: 13px;
+  margin: 0 0 10px 0;
+}
+
+.extraGuestInfo {
+  font-size: 13px;
+  margin: 0;
+}
+
+.guestsClose {
+  margin: 2px 0;
+  height: 22px;
+  width: 294px;
+}
+
+.closeBtn {
+  border: 1px solid #fff;
+  margin: 0;
+  padding: 2px 0;
+  font-size: 14px;
+  background-color: #fff;
+  color: #007A87;
+  font-weight: 600;
+  float: right;
 }
 
 .bookBtn {
