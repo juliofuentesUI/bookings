@@ -2,10 +2,8 @@
   border: 1px solid #e4e4e4;
   width: 376px;
   height: 462px;
-  /* height: 611px; */
   position: static;
-  font-family: Circular, -apple-system, system-ui, 'Raleway', 'Montserrat', 'Roboto', 'Helvetica Neue', sans-serif;
-  /* font-family: 'Montserrat', 'Roboto', 'Open Sans', Arial; */
+  font-family: Circular, -apple-system, system-ui, 'Raleway', 'Montserrat', 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
   color: #484848;
 }
@@ -32,7 +30,9 @@
   font-family: 'Open Sans', Arial;
   font-size: 22px;
   font-weight: bold;
-  width: 30px;
+  /* width: 30px; */
+  width: auto;
+  margin: 0 5px 0 0;
   float: left;
 }
 
@@ -155,29 +155,90 @@ img {
   height: auto;
   width: 294px;
   margin: 16px auto 0 auto;
-  font-family: 'Montserrat', 'Roboto', Arial;
 }
 
 .guestsOptionAdults {
   margin: 10px 0;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .guestsOption {
   margin: 10px 0 5px 0;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .extraOptionInfo {
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 300;
   margin: 0 0 10px 0;
 }
 
 .extraGuestInfo {
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 300;
   margin: 0;
+}
+
+.subtractBtn {
+  float: right;
+  font-size: 15px;
+  color: rgba(0, 132, 137, 0.3);
+  border: 1px solid rgba(0, 132, 137, 0.3);
+  padding: 4px 11px 7px 11px;
+  border-radius: 20px;
+}
+
+.addBtn {
+  float: right;
+  font-size: 15px;
+  color: #007A87;
+  border: 1px solid #007A87;
+  padding: 4px 10px 7px 10px;
+  border-radius: 20px;
+}
+
+.subtractAdultsCountBtn {
+  margin: -5px 10px 0 5px;
+}
+
+.addAdultsCountBtn {
+  margin: -5px 0 0 10px;
+}
+
+.subtractChildrenCountBtn {
+  margin: 5px 10px 0 5px;
+}
+
+.addChildrenCountBtn {
+  margin: 5px 0 0 10px;
+}
+
+.subtractInfantsCountBtn {
+  margin: 1px 10px 0 5px;
+}
+
+.addInfantsCountBtn {
+  margin: 1px 0 0 10px;
+}
+
+.guestsCount {
+  float: right;
+  text-align: center;
+  width: 15px;
+}
+
+.guestsAdultsCount {
+  margin: 0 10px;
+}
+
+.guestsChildrenCount {
+  margin: 10px 10px;
+}
+
+.guestsInfantsCount {
+  margin: 7px 10px;
 }
 
 .guestsClose {
@@ -190,7 +251,7 @@ img {
   border: 1px solid #fff;
   margin: 0;
   padding: 2px 0;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #fff;
   color: #007A87;
   font-weight: 600;

@@ -4,10 +4,6 @@ class Guests extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      guestTotal: '1 guest',
-      guestAdult: 1,
-      guestChildren: 0,
-      guestInfant: 0,
       guestColor: '#fff',
       guestText: '#757575',
       guestArrow: 'https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ExpandMore-512.png',
@@ -47,26 +43,58 @@ class Guests extends React.Component {
   }
 
   render() {
+    let guestInfantInfo = this.props.house.infant_guest_eligible ? 'Infants count toward the number of guests.' : 'Infants don\'t count toward the number of guests.';
+
     let guestsPanel = (
       <div className='guestsPanel'>
 
         <div className='guestsType'>
-          <p className='guestsOptionAdults'>Adults</p>
+          <div className='guestsOptionAdults'>Adults 
+            <button className='addBtn addAdultsCountBtn' 
+             onClick={() => {
+               this.props.updateGuest('add', 'adult');
+             }}>+</button>
+            <div className='guestsCount guestsAdultsCount'>{this.props.adults}</div>
+            <button className='subtractBtn subtractAdultsCountBtn'
+             onClick={() => {
+               this.props.updateGuest('subtract', 'adult');
+             }}>-</button>
+          </div>
         </div>
 
         <div className='guestsType'>
-          <p className='guestsOption'>Children</p>
+          <div className='guestsOption'>Children
+            <button className='addBtn addChildrenCountBtn'
+             onClick={() => {
+               this.props.updateGuest('add', 'children');
+             }}>+</button>
+            <div className='guestsCount guestsChildrenCount'>{this.props.children}</div>
+            <button className='subtractBtn subtractChildrenCountBtn'
+             onClick={() => {
+               this.props.updateGuest('subtract', 'children');
+             }}>-</button>
+          </div>
           <p className='extraOptionInfo'>Ages 2-12</p>
         </div>
 
         <div className='guestsType'>
-          <p className='guestsOption'>Infants</p>
+          <div className='guestsOption'>Infants
+            <button className='addBtn addInfantsCountBtn'
+             onClick={() => {
+               this.props.updateGuest('add', 'infants');
+             }}>+</button>
+            <div className='guestsCount guestsInfantsCount'>{this.props.infants}</div>
+            <button className='subtractBtn subtractInfantsCountBtn'
+             onClick={() => {
+               this.props.updateGuest('subtract', 'infants');
+             }}>-</button>
+          </div>
           <p className='extraOptionInfo'>Under 2</p>
         </div>
 
         <div className='guestsType'>
           <p className='extraGuestInfo'>
-            2 guests maximum. Infants don't count toward the number of guests.
+            {this.props.house.max_no_guests} guests maximum. {guestInfantInfo}
           </p>
         </div>
 
@@ -75,7 +103,7 @@ class Guests extends React.Component {
            onClick={() => {
              this.updateGuestField();
              this.showGuestsPanel();
-          }}>Close</button>
+           }}>Close</button>
 
         </div>
       </div>
@@ -89,13 +117,13 @@ class Guests extends React.Component {
          onClick={() => {
            this.updateGuestField();
            this.showGuestsPanel();
-        }}>
+         }}>
             
           <div className='guestsBtn'
            style={{
              backgroundColor: this.state.guestColor,
              color: this.state.guestText
-          }}>{this.state.guestTotal}</div>
+           }}>{this.props.total}</div>
 
           <img src={this.state.guestArrow} className='guestsArrow'/>
 
