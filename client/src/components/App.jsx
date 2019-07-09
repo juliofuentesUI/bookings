@@ -18,9 +18,9 @@ class App extends React.Component {
     fetch('/rooms/bookings/listings')
     .then(res => res.json())
     .then((result) => {
-      console.log(result[0]);
+      console.log(result[1]);
       this.setState({
-        listing: result[0]
+        listing: result[1]
       })
     },
     (err) => {

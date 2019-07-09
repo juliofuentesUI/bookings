@@ -11,11 +11,16 @@ class Guests extends React.Component {
       infantPadding: '3px 5px 3px 0',
       borderBottom: '1px solid #e4e4e4',
       boxHeight: '42px',
+      addBtnBorder: '1px solid #007A87',
+      addBtnText: '#007A87',
+      subtractBtnBorder: '1px solid rgba(0, 132, 137, 0.3)',
+      subtractBtnText: 'rgba(0, 132, 137, 0.3)',
       showPanel: false
     }
 
     this.updateGuestField.bind(this);
     this.showGuestsPanel.bind(this);
+    this.updateButtonColor.bind(this);
   }
 
   updateGuestField() {
@@ -52,6 +57,25 @@ class Guests extends React.Component {
     })
   }
 
+  updateButtonColor(type) {
+    let amount = type === 'add' ? this.props.total+1 : this.props.total-1;
+    if (amount >= this.props.house.max_no_guests) {
+      this.setState({
+        addBtnBorder: '1px solid rgba(0, 132, 137, 0.3)',
+        addBtnText: 'rgba(0, 132, 137, 0.3)',
+        subtractBtnBorder: '1px solid #007A87',
+        subtractBtnText: '#007A87'
+      })
+    } else {
+      this.setState({
+        addBtnBorder: '1px solid #007A87',
+        addBtnText: '#007A87',
+        subtractBtnBorder: '1px solid rgba(0, 132, 137, 0.3)',
+        subtractBtnText: 'rgba(0, 132, 137, 0.3)'
+      })
+    }
+  }
+
   render() {
     let guestInfantInfo = this.props.house.infant_guest_eligible ? 'count' : 'don\'t count';
     let guestSyntax = this.props.total === 1 ? 'guest' : 'guests';
@@ -67,17 +91,26 @@ class Guests extends React.Component {
 
     let guestsPanel = (
       <div className='guestsPanel'>
-
         <div className='guestsType'>
           <div className='guestsOptionAdults'>Adults 
             <button className='addBtn addAdultsCountBtn' 
              onClick={() => {
                this.props.updateGuest('add', 'adults');
+               this.updateButtonColor('add');
+             }}
+             style={{
+               border: this.state.addBtnBorder,
+               color: this.state.addBtnText
              }}>+</button>
             <div className='guestsCount guestsAdultsCount'>{this.props.adults}</div>
             <button className='subtractBtn subtractAdultsCountBtn'
              onClick={() => {
                this.props.updateGuest('subtract', 'adults');
+               this.updateButtonColor('subtract');
+             }}
+             style={{
+               border: this.state.subtractBtnBorder,
+               color: this.state.subtractBtnText
              }}>-</button>
           </div>
         </div>
@@ -87,11 +120,21 @@ class Guests extends React.Component {
             <button className='addBtn addChildrenCountBtn'
              onClick={() => {
                this.props.updateGuest('add', 'children');
+               this.updateButtonColor('add');
+             }}
+             style={{
+                border: this.state.addBtnBorder,
+                color: this.state.addBtnText
              }}>+</button>
             <div className='guestsCount guestsChildrenCount'>{this.props.children}</div>
             <button className='subtractBtn subtractChildrenCountBtn'
              onClick={() => {
                this.props.updateGuest('subtract', 'children');
+               this.updateButtonColor('subtract');
+             }}
+             style={{
+                border: this.state.subtractBtnBorder,
+                color: this.state.subtractBtnText
              }}>-</button>
           </div>
           <p className='extraOptionInfo'>Ages 2-12</p>
