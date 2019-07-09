@@ -8,6 +8,7 @@ class Guests extends React.Component {
       guestText: '#757575',
       guestArrow: 'https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ExpandMore-512.png',
       guestPadding: '3px 0 3px 5px',
+      infantPadding: '3px 5px 3px 0',
       borderBottom: '1px solid #e4e4e4',
       boxHeight: '42px',
       showPanel: false
@@ -20,7 +21,8 @@ class Guests extends React.Component {
   updateGuestField() {
     let color = this.state.guestColor === '#fff' ? '#99EDE6' : '#fff';
     let textColor = this.state.guestText === '#757575' ? '#007A87' : '#757575';
-    let padding = this.state.guestPadding === '3px 0 3px 5px' ? '3px 7px' : '3px 0 3px 5px';
+    let padding = this.state.guestPadding === '3px 0 3px 5px' ? '6px 8px' : '3px 0 3px 5px';
+    let babyPadding = this.state.infantPadding === '3px 5px 3px 0' ? '6px 0' : '3px 5px 3px 0';
     let arrowDir;
 
     if (this.state.guestArrow === 'https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ExpandMore-512.png') {
@@ -33,14 +35,15 @@ class Guests extends React.Component {
       guestColor: color,
       guestText: textColor,
       guestArrow: arrowDir,
-      guestPadding: padding
+      guestPadding: padding,
+      infantPadding: babyPadding
     })
   }
 
   showGuestsPanel() {
     let show = this.state.showPanel ? false : true;
     let bottom = this.state.borderBottom === '1px solid #e4e4e4' ? '2px solid #007A87' : '1px solid #e4e4e4';
-    let height = this.state.height === '42px' ? '50px' : '42px';
+    let height = this.state.boxHeight === '42px' ? '50px' : '42px';
 
     this.setState({
       showPanel: show,
@@ -147,7 +150,10 @@ class Guests extends React.Component {
            }}>{this.props.total} {guestSyntax}
           </div>
 
-          <span className='infantsCount'>{!this.props.house.infant_guest_eligible && infantSyntax}</span>
+          <span className='infantsCount'
+           style={{
+             padding: this.state.infantPadding
+           }}>{!this.props.house.infant_guest_eligible && infantSyntax}</span>
 
           <img src={this.state.guestArrow} className='guestsArrow'/>
 
