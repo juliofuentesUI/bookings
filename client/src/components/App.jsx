@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       listing: {},
-      guestTotal: '1 guest',
+      guestTotal: 1,
       guestAdults: 1,
       guestChildren: 0,
       guestInfants: 0
@@ -30,30 +30,47 @@ class App extends React.Component {
 
   updateGuestTotal(type, guest) {
     if (type === 'add') {
-      if (guest === 'adult') {
-        this.setState({
-          guestAdults: this.state.guestAdults+1
-        })
-      } else if (guest === 'children') {
-        this.setState({
-          guestChildren: this.state.guestChildren+1
-        })
-      } else if (guest === 'infants') {
-        this.setState({
-          guestInfants: this.state.guestInfants+1
-        })
+      if (guest === 'infants') {
+        if (!this.state.listing.infant_guest_eligible && this.state.guestInfants !== 5) {
+          this.setState({
+            guestInfants: this.state.guestInfants+1
+          })
+        } else if (this.state.listing.infant_guest_eligible) {
+          if (this.state.guestTotal !== this.state.listing.max_no_guests) {
+            this.setState({
+              guestInfants: this.state.guestInfants+1,
+              guestTotal: this.state.guestTotal+1
+            })
+          }
+        }
+      }
+
+      if (this.state.guestTotal !== this.state.listing.max_no_guests) {
+        if (guest === 'adults') {
+          this.setState({
+            guestAdults: this.state.guestAdults+1,
+            guestTotal: this.state.guestTotal+1
+          })
+        } else if (guest === 'children') {
+          this.setState({
+            guestChildren: this.state.guestChildren+1,
+            guestTotal: this.state.guestTotal+1
+          })
+        }
       }
     } else {
-      if (guest === 'adult') {
-        if (this.state.guestAdults !== 0) {
+      if (guest === 'adults') {
+        if (this.state.guestAdults !== 1) {
           this.setState({
-            guestAdults: this.state.guestAdults-1
+            guestAdults: this.state.guestAdults-1,
+            guestTotal: this.state.guestTotal-1
           })
         }
       } else if (guest === 'children') {
         if (this.state.guestChildren !== 0) {
           this.setState({
-            guestChildren: this.state.guestChildren-1
+            guestChildren: this.state.guestChildren-1,
+            guestTotal: this.state.guestTotal-1
           })
         }
       } else if (guest === 'infants') {
@@ -61,6 +78,12 @@ class App extends React.Component {
           this.setState({
             guestInfants: this.state.guestInfants-1
           })
+
+          if (this.state.listing.infant_guest_eligible) {
+            this.setState({
+              guestTotal: this.state.guestTotal-1
+            })
+          }
         }
       }
     }

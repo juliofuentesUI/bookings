@@ -7,7 +7,9 @@ class Guests extends React.Component {
       guestColor: '#fff',
       guestText: '#757575',
       guestArrow: 'https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ExpandMore-512.png',
+      guestPadding: '3px 0 3px 5px',
       borderBottom: '1px solid #e4e4e4',
+      boxHeight: '42px',
       showPanel: false
     }
 
@@ -18,6 +20,7 @@ class Guests extends React.Component {
   updateGuestField() {
     let color = this.state.guestColor === '#fff' ? '#99EDE6' : '#fff';
     let textColor = this.state.guestText === '#757575' ? '#007A87' : '#757575';
+    let padding = this.state.guestPadding === '3px 0 3px 5px' ? '3px 7px' : '3px 0 3px 5px';
     let arrowDir;
 
     if (this.state.guestArrow === 'https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ExpandMore-512.png') {
@@ -29,21 +32,35 @@ class Guests extends React.Component {
     this.setState({
       guestColor: color,
       guestText: textColor,
-      guestArrow: arrowDir
+      guestArrow: arrowDir,
+      guestPadding: padding
     })
   }
 
   showGuestsPanel() {
     let show = this.state.showPanel ? false : true;
     let bottom = this.state.borderBottom === '1px solid #e4e4e4' ? '2px solid #007A87' : '1px solid #e4e4e4';
+    let height = this.state.height === '42px' ? '50px' : '42px';
+
     this.setState({
       showPanel: show,
-      borderBottom: bottom
+      borderBottom: bottom,
+      boxHeight: height
     })
   }
 
   render() {
-    let guestInfantInfo = this.props.house.infant_guest_eligible ? 'Infants count toward the number of guests.' : 'Infants don\'t count toward the number of guests.';
+    let guestInfantInfo = this.props.house.infant_guest_eligible ? 'count' : 'don\'t count';
+    let guestSyntax = this.props.total === 1 ? 'guest' : 'guests';
+    let infantSyntax;
+
+    if (!this.props.house.infant_guest_eligible) {
+      if (this.props.infants > 1) {
+        infantSyntax = ', ' + this.props.infants + ' infants';
+      } else if (this.props.infants === 1) {
+        infantSyntax = ', ' + this.props.infants + ' infant';
+      }
+    }
 
     let guestsPanel = (
       <div className='guestsPanel'>
@@ -52,12 +69,12 @@ class Guests extends React.Component {
           <div className='guestsOptionAdults'>Adults 
             <button className='addBtn addAdultsCountBtn' 
              onClick={() => {
-               this.props.updateGuest('add', 'adult');
+               this.props.updateGuest('add', 'adults');
              }}>+</button>
             <div className='guestsCount guestsAdultsCount'>{this.props.adults}</div>
             <button className='subtractBtn subtractAdultsCountBtn'
              onClick={() => {
-               this.props.updateGuest('subtract', 'adult');
+               this.props.updateGuest('subtract', 'adults');
              }}>-</button>
           </div>
         </div>
@@ -94,7 +111,7 @@ class Guests extends React.Component {
 
         <div className='guestsType'>
           <p className='extraGuestInfo'>
-            {this.props.house.max_no_guests} guests maximum. {guestInfantInfo}
+            {this.props.house.max_no_guests} guests maximum. Infants {guestInfantInfo} toward the number of guests.
           </p>
         </div>
 
@@ -113,7 +130,10 @@ class Guests extends React.Component {
       <div className='guests'>
         <h5 className='guestsLabel'>Guests</h5>
         <button className='fieldBox'
-         style={{borderBottom: this.state.borderBottom}}
+         style={{
+           borderBottom: this.state.borderBottom,
+           height: this.state.boxHeight
+         }}
          onClick={() => {
            this.updateGuestField();
            this.showGuestsPanel();
@@ -122,8 +142,12 @@ class Guests extends React.Component {
           <div className='guestsBtn'
            style={{
              backgroundColor: this.state.guestColor,
-             color: this.state.guestText
-           }}>{this.props.total}</div>
+             color: this.state.guestText,
+             padding: this.state.guestPadding
+           }}>{this.props.total} {guestSyntax}
+          </div>
+
+          <span className='infantsCount'>{!this.props.house.infant_guest_eligible && infantSyntax}</span>
 
           <img src={this.state.guestArrow} className='guestsArrow'/>
 
