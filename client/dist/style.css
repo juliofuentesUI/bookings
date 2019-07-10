@@ -220,19 +220,49 @@ img {
   width: 332;
   padding: 0;
   height: 10px;
+  margin: 0 0 10px 0;
 }
 
 .weekdays {
   list-style: none;
   font-size: 12px;
   font-weight: 500;
+  text-align: center;
   color: #757575;
-  margin: 0 13px;
+  width: 41.5px;
+  height: 20px;
   float: left;
 }
 
 .firstDay {
-  margin: 0 13px 0 35px;
+  margin: 0 0 0 20px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 20px 0 20px;
+}
+
+tbody {
+  padding: 0;
+}
+
+.emptyDay {
+  width: 39px;
+  height: 38px;
+}
+
+.day {
+  border: 1px solid #e4e4e4;
+  width: 39px;
+  height: 38px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.firstBox {
+  margin: 0 20px 0 0;
 }
 
 /* GUESTS COMPONENT */
