@@ -261,8 +261,9 @@ tbody {
   font-size: 13px;
 }
 
-.firstBox {
-  margin: 0 20px 0 0;
+.unavailableDay {
+  color: #e4e4e4;
+  text-decoration: line-through;
 }
 
 /* GUESTS COMPONENT */

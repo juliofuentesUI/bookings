@@ -66,7 +66,7 @@ class Dates extends React.Component {
           <tbody>
             <tr>
               <td className='emptyDay'></td>
-              <td className='day'>1</td>
+              <td className='day unavailableDay'>1</td>
               <td className='day'>2</td>
               <td className='day'>3</td>
               <td className='day'>4</td>
@@ -77,7 +77,7 @@ class Dates extends React.Component {
               <td className='day'>7</td>
               <td className='day'>8</td>
               <td className='day'>9</td>
-              <td className='day'>10</td>
+              <td className='day unavailableDay'>10</td>
               <td className='day'>11</td>
               <td className='day'>12</td>
               <td className='day'>13</td>
@@ -85,9 +85,9 @@ class Dates extends React.Component {
             <tr>
               <td className='day'>14</td>
               <td className='day'>15</td>
-              <td className='day'>16</td>
-              <td className='day'>17</td>
-              <td className='day'>18</td>
+              <td className='day unavailableDay'>16</td>
+              <td className='day unavailableDay'>17</td>
+              <td className='day unavailableDay'>18</td>
               <td className='day'>19</td>
               <td className='day'>20</td>
             </tr>
@@ -102,9 +102,9 @@ class Dates extends React.Component {
             </tr>
             <tr>
               <td className='day'>28</td>
-              <td className='day'>29</td>
-              <td className='day'>30</td>
-              <td className='day'>31</td>
+              <td className='day unavailableDay'>29</td>
+              <td className='day unavailableDay'>30</td>
+              <td className='day unavailableDay'>31</td>
               <td className='emptyDay'></td>
               <td className='emptyDay'></td>
               <td className='emptyDay'></td>
