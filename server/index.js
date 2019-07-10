@@ -22,12 +22,13 @@ app.get('/rooms/bookings/listings', (req, res) => {
   });
 })
 
-app.get('/rooms/bookings/dates', (req, res) => {
-  Dates.findAll()
+app.get('/rooms/bookings/dates/:month', (req, res) => {
+  Dates.findAll({ where: { month: req.params.month } })
   .then((results) => {
-    res.send(results); 
+    res.send(results);
   })
   .catch((err) => {
+    console.log('ERROR ON GET REQ TO DATES:');
     console.log(err);
     res.send(err);
   })
@@ -44,7 +45,7 @@ app.get('/rooms/bookings/listings_dates', (req, res) => {
   })
 })
 
-// NEW CODE
+// FOR TESTING
 
 app.get('/rooms/bookings/test_listings', (req, res) => {
   Test_Listings.findAll()
@@ -55,23 +56,9 @@ app.get('/rooms/bookings/test_listings', (req, res) => {
     console.log(err);
     res.send(err);
   });
-
-  // Test_Listings.findOne({
-  //   where: {
-  //     id: req.params.listing_id
-  //   }
-  // })
-  // .then((results) => {
-  //   res.send(results);
-  // })
-  // .catch((err) => {
-  //   console.log(err);
-  //   res.send(err);
-  // });
 })
 
 //
-
 
 app.listen(port, console.log(`${port} is lisenting!`));
 

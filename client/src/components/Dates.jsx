@@ -49,7 +49,7 @@ class Dates extends React.Component {
         <div className='swapMonth'>
           <img src='https://i.ibb.co/QkSRK9K/leftfacingarrow.png' className='calendarArrow'/>
         </div>
-        <p className='currentMonth'>July 2019</p>
+        <p className='currentMonth'>{this.props.month} 2019</p>
         <div className='swapMonth'>
           <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png' className='calendarArrow'/>
         </div>
@@ -63,6 +63,15 @@ class Dates extends React.Component {
           <li className='weekdays'>Sa</li>
         </ul>
         <table>
+          <tbody>
+            <tr>
+              {this.props.calendar.map((singleDay) => (
+                <td className='day' key={singleDay.id}>{singleDay.day}</td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+        {/* <table>
           <tbody>
             <tr>
               <td className='emptyDay'></td>
@@ -110,7 +119,7 @@ class Dates extends React.Component {
               <td className='emptyDay'></td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
       </div>
     )
 
@@ -123,6 +132,7 @@ class Dates extends React.Component {
           onClick={() => {
             this.updateColor('Check-in');
             this.showCalendarPopUp();
+            this.props.fetchDates('July');
           }} 
           style={{
             backgroundColor: this.state.checkInColor, 

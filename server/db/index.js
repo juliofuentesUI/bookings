@@ -65,13 +65,17 @@ const Dates = connection.define('dates', {
     type: Sequelize.DATEONLY,
     allowNull: false
   },
-  day: {
+  weekday: {
     type: Sequelize.STRING,
     allowNull: false
   },
   month: {
     type: Sequelize.STRING,
     allowNull: false      
+  },
+  day: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 });
 

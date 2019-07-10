@@ -1,6 +1,7 @@
 import React from 'react';
 import Dates from './Dates.jsx';
 import Guests from './Guests.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,8 +11,13 @@ class App extends React.Component {
       guestTotal: 1,
       guestAdults: 1,
       guestChildren: 0,
-      guestInfants: 0
+      guestInfants: 0,
+      currentCalendar: [],
+      currentMonth: 'July'
     }
+
+    this.fetchCalendarData = this.fetchCalendarData.bind(this);
+    this.updateGuestTotal = this.updateGuestTotal.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +33,28 @@ class App extends React.Component {
       console.log('ERROR ON MOUNT: ' + err);
     })
   }
+
+  fetchCalendarData(month) {
+    let monthParam = month.length === 0 ? 'July' : month;
+    let url = `/rooms/bookings/dates/${monthParam}`;
+    axios.get(url)
+    .then((results) => {
+      // console.log('FETCH CALENDAR DATA RESULTS:')
+      // console.log(result.data);
+      this.setState({
+        currentCalendar: results.data,
+        currentMonth: monthParam
+      })
+    })
+    .catch((err) => {
+      console.log('ERROR ON FETCH CAL DATA:');
+      console.log(err);
+    })
+  }
+
+  // fetchAvailableDates() {
+
+  // }
 
   updateGuestTotal(type, guest) {
     if (type === 'add') {
@@ -108,7 +136,10 @@ class App extends React.Component {
         </div>
 
         <div className='bookingFields'>
-          <Dates />
+          <Dates 
+           fetchDates={this.fetchCalendarData}
+           calendar={this.state.currentCalendar}
+           month={this.state.currentMonth}/>
 
           <Guests 
            house={this.state.listing}
@@ -116,7 +147,7 @@ class App extends React.Component {
            adults={this.state.guestAdults}
            children={this.state.guestChildren}
            infants={this.state.guestInfants}
-           updateGuest={this.updateGuestTotal.bind(this)}
+           updateGuest={this.updateGuestTotal}
           />
 
           {/* <Quote /> */}
