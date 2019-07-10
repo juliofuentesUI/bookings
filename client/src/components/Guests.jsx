@@ -18,9 +18,9 @@ class Guests extends React.Component {
       showPanel: false
     }
 
-    this.updateGuestField.bind(this);
-    this.showGuestsPanel.bind(this);
-    this.updateButtonColor.bind(this);
+    this.updateGuestField = this.updateGuestField.bind(this);
+    this.showGuestsPanel = this.showGuestsPanel.bind(this);
+    this.updateButtonColor = this.updateButtonColor.bind(this);
   }
 
   updateGuestField() {

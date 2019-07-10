@@ -1,4 +1,5 @@
 import React from 'react';
+import { tsNumberKeyword } from '@babel/types';
 
 class Dates extends React.Component {
   constructor(props) {
@@ -9,8 +10,11 @@ class Dates extends React.Component {
       checkInColor: '#fff',
       checkOutColor: '#fff',
       checkInText: '#757575',
-      checkOutText: '#757575'
+      checkOutText: '#757575',
+      showCalendar: false
     }
+
+    this.showCalendarPopUp = this.showCalendarPopUp.bind(this);
   }
 
   updateColor(type) {
@@ -31,7 +35,36 @@ class Dates extends React.Component {
     }
   }
 
+  showCalendarPopUp() {
+    let show = this.state.showCalendar ? false : true;
+
+    this.setState({
+      showCalendar: show
+    })
+  }
+
   render() {
+    let calendarPopUp = (
+      <div className='calendarContainer'>
+        <div className='swapMonth'>
+          <img src='https://i.ibb.co/QkSRK9K/leftfacingarrow.png' className='calendarArrow'/>
+        </div>
+        <p className='currentMonth'>July 2019</p>
+        <div className='swapMonth'>
+          <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png' className='calendarArrow'/>
+        </div>
+        <ul className='daysContainer'>
+          <li className='weekdays firstDay'>Su</li>
+          <li className='weekdays'>Mo</li>
+          <li className='weekdays'>Tu</li>
+          <li className='weekdays'>We</li>
+          <li className='weekdays'>Th</li>
+          <li className='weekdays'>Fr</li>
+          <li className='weekdays'>Sa</li>
+        </ul>
+      </div>
+    )
+
     return (
       <div className='dates'>
         <h5 className='datesLabel'>Dates</h5>
@@ -40,6 +73,7 @@ class Dates extends React.Component {
           <div className='datesBtn'
           onClick={() => {
             this.updateColor('Check-in');
+            this.showCalendarPopUp();
           }} 
           style={{
             backgroundColor: this.state.checkInColor, 
@@ -60,6 +94,9 @@ class Dates extends React.Component {
           }}>Checkout</div>
         
         </div>
+
+        {this.state.showCalendar && calendarPopUp}
+
       </div>
     )
   }
