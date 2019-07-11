@@ -143,6 +143,8 @@ class App extends React.Component {
 
           <Guests 
            house={this.state.listing}
+           infantEligiblity={this.state.listing.infant_guest_eligible}
+           maxGuestCount={this.state.listing.max_no_guests}
            total={this.state.guestTotal}
            adults={this.state.guestAdults}
            children={this.state.guestChildren}

@@ -1,5 +1,8 @@
 {
   "name": "bookings",
+  "jest": {
+    "setupFilesAfterEnv": ["<rootDir>tests/src/setupTests.js"]
+  },
   "version": "1.0.0",
   "description": "bookings module for AirBnb item detail page",
   "author": "Janelle Bautista",
@@ -30,6 +33,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
