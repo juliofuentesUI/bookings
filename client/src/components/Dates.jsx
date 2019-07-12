@@ -41,15 +41,41 @@ class Dates extends React.Component {
     })
   }
 
+  changeMonth(type, currentMonth) {
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let index = months.indexOf(currentMonth);
+    let nextMonth;
+
+    if (type === 'previous') {
+      if (currentMonth !== 'January') {
+        nextMonth = months[index-1];
+      }
+    } else if (type === 'next') {
+      if (currentMonth !== 'December') {
+        nextMonth = months[index+1];
+      }
+    }
+
+    this.props.fetchDates(nextMonth);
+  }
+
   render() {
     let calendarPopUp = (
       <div className='calendarContainer'>
         <div className='swapMonth'>
-          <img src='https://i.ibb.co/QkSRK9K/leftfacingarrow.png' className='calendarArrow'/>
+          <img src='https://i.ibb.co/QkSRK9K/leftfacingarrow.png'
+           className='calendarArrow'
+           onClick={() => {
+             this.changeMonth('previous', this.props.month);
+           }}/>
         </div>
         <p className='currentMonth'>{this.props.month} 2019</p>
         <div className='swapMonth'>
-          <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png' className='calendarArrow'/>
+          <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png'
+           className='calendarArrow'
+           onClick={() => {
+             this.changeMonth('next', this.props.month);
+           }}/>
         </div>
         <ul className='daysContainer'>
           <li className='weekdays firstDay'>Su</li>
@@ -77,7 +103,7 @@ class Dates extends React.Component {
           onClick={() => {
             this.updateColor('Check-in');
             this.showCalendarPopUp();
-            this.props.fetchDates('May');
+            this.props.fetchDates('June');
           }} 
           style={{
             backgroundColor: this.state.checkInColor, 
