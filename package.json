@@ -1,7 +1,9 @@
 {
   "name": "bookings",
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>tests/src/setupTests.js"]
+    "setupFilesAfterEnv": ["<rootDir>tests/src/setupTests.js"],
+    "collectCoverage": true,
+    "coverageDirectory": "./tests/coverage"
   },
   "version": "1.0.0",
   "description": "bookings module for AirBnb item detail page",
