@@ -101,8 +101,9 @@ const generateSampleDatesData = () => {
   for (var i = 1; i < 32; i++) {
     let firstMonthDate = {
       date: new Date(2019, 4, i),
-      day: currentDayFirstMonth,
-      month: 'May'
+      weekday: currentDayFirstMonth,
+      month: 'May',
+      day: i
     }
 
     currentDayFirstMonth = findCurrentDay(currentDayFirstMonth);
@@ -114,8 +115,9 @@ const generateSampleDatesData = () => {
   for (var j = 1; j < 31; j++) {
     let secondMonthDate = {
       date: new Date(2019, 5, j),
-      day: currentDaySecondMonth,
-      month: 'June'
+      weekday: currentDaySecondMonth,
+      month: 'June',
+      day: j
     }
 
     currentDaySecondMonth = findCurrentDay(currentDaySecondMonth);
@@ -127,8 +129,9 @@ const generateSampleDatesData = () => {
   for (var k = 1; k < 32; k++) {
     let thirdMonthDate = {
       date: new Date(2019, 6, k),
-      day: currentDayThirdMonth,
-      month: 'July'
+      weekday: currentDayThirdMonth,
+      month: 'July',
+      day: k
     }
 
     currentDayThirdMonth = findCurrentDay(currentDayThirdMonth);
@@ -145,8 +148,6 @@ Dates.bulkCreate(sampleDatesData)
 .then((data) => {
   console.log(data);
 });
-
-const sampleLDData = [];
 
 const generateSampleLDData = () => {
   Listings.findAll()

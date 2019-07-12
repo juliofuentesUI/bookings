@@ -1,6 +1,7 @@
 import React from 'react';
 import Dates from './Dates.jsx';
 import Guests from './Guests.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,8 +11,17 @@ class App extends React.Component {
       guestTotal: 1,
       guestAdults: 1,
       guestChildren: 0,
-      guestInfants: 0
+      guestInfants: 0,
+      currentCalendar: [],
+      currentMonth: 'July',
+      checkInDate: 'Check-in',
+      checkOutDate: 'Checkout'
     }
+
+    this.fetchCalendarData = this.fetchCalendarData.bind(this);
+    this.updateGuestTotal = this.updateGuestTotal.bind(this);
+    this.updateCheckInDate = this.updateCheckInDate.bind(this);
+    this.updateCheckOutDate = this.updateCheckOutDate.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +37,79 @@ class App extends React.Component {
       console.log('ERROR ON MOUNT: ' + err);
     })
   }
+
+  fetchCalendarData(month) {
+    let monthParam = month.length === 0 ? 'July' : month;
+    let url = `/rooms/bookings/dates/${monthParam}`;
+    axios.get(url)
+    .then((results) => {
+      // console.log('FETCH CALENDAR DATA RESULTS:')
+      // console.log(results.data);
+
+      let month = [];
+      let week = [];
+      let weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      let emptyBox = {
+        type: 'emptyDay'
+      };
+
+      for (var i = 0; i < results.data.length; i++) {
+        let currentDay = results.data[i];
+        currentDay['type'] = 'day';
+        if (i === 0 && currentDay.weekday !== 'Sunday') {
+          let firstIndex = weekdays.indexOf(currentDay.weekday);
+          
+          for (var j = 0; j < firstIndex; j++) {
+            week.unshift(emptyBox);
+          }
+          
+          week.push(currentDay); 
+
+          if (currentDay.weekday === 'Saturday') {
+            month.push(week);
+            week = [];
+          }
+
+        } else if (currentDay.weekday === 'Saturday' && i !== results.data.length-1) {
+          week.push(currentDay);
+          month.push(week);
+          week = [];
+
+        } else if (i === results.data.length-1) {
+          week.push(currentDay);
+
+          if (currentDay.weekday !== 'Saturday') {
+            let lastIndex = weekdays.indexOf(currentDay.weekday);
+            let lastEmptyBoxCount = weekdays.length - (lastIndex+1);
+
+            for (var k = 0; k < lastEmptyBoxCount; k++) {
+              week.push(emptyBox);
+            }
+          }
+
+          month.push(week);
+
+        } else {
+          week.push(currentDay);
+        }
+      }
+
+      console.log(month);
+
+      this.setState({
+        currentCalendar: month,
+        currentMonth: monthParam
+      })
+    })
+    .catch((err) => {
+      console.log('ERROR ON FETCH CAL DATA:');
+      console.log(err);
+    })
+  }
+
+  // fetchAvailableDates() {
+
+  // }
 
   updateGuestTotal(type, guest) {
     if (type === 'add') {
@@ -89,6 +172,18 @@ class App extends React.Component {
     }
   }
 
+  updateCheckInDate(date) {
+    this.setState({
+      checkInDate: date
+    })
+  }
+
+  updateCheckOutDate(date) {
+    this.setState({
+      checkOutDate: date
+    })
+  }
+
   render() {
     let price = (Number(this.state.listing.price_per_night)).toString();
 
@@ -108,15 +203,24 @@ class App extends React.Component {
         </div>
 
         <div className='bookingFields'>
-          <Dates />
+          <Dates 
+           fetchDates={this.fetchCalendarData}
+           calendar={this.state.currentCalendar}
+           month={this.state.currentMonth}
+           selectCheckIn={this.updateCheckInDate}
+           selectCheckOut={this.updateCheckOutDate}
+           checkIn={this.state.checkInDate}
+           checkOut={this.state.checkOutDate}/>
 
           <Guests 
            house={this.state.listing}
+           infantEligiblity={this.state.listing.infant_guest_eligible}
+           maxGuestCount={this.state.listing.max_no_guests}
            total={this.state.guestTotal}
            adults={this.state.guestAdults}
            children={this.state.guestChildren}
            infants={this.state.guestInfants}
-           updateGuest={this.updateGuestTotal.bind(this)}
+           updateGuest={this.updateGuestTotal}
           />
 
           {/* <Quote /> */}

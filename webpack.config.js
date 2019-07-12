@@ -11,22 +11,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         include: SRC_DIR,
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            ['@babel/preset-react'], 
-            [
-              '@babel/preset-env',
-              {
-                targets: {
-                  node: 'current',
-                }
-              }
-            ]
-          ]
-        }
+        loader: 'babel-loader'
       }
     ]
   }

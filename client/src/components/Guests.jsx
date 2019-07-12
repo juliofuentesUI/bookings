@@ -18,9 +18,9 @@ class Guests extends React.Component {
       showPanel: false
     }
 
-    this.updateGuestField.bind(this);
-    this.showGuestsPanel.bind(this);
-    this.updateButtonColor.bind(this);
+    this.updateGuestField = this.updateGuestField.bind(this);
+    this.showGuestsPanel = this.showGuestsPanel.bind(this);
+    this.updateButtonColor = this.updateButtonColor.bind(this);
   }
 
   updateGuestField() {
@@ -59,7 +59,7 @@ class Guests extends React.Component {
 
   updateButtonColor(type) {
     let amount = type === 'add' ? this.props.total+1 : this.props.total-1;
-    if (amount >= this.props.house.max_no_guests) {
+    if (amount >= this.props.maxGuestCount) {
       this.setState({
         addBtnBorder: '1px solid rgba(0, 132, 137, 0.3)',
         addBtnText: 'rgba(0, 132, 137, 0.3)',
@@ -77,11 +77,12 @@ class Guests extends React.Component {
   }
 
   render() {
-    let guestInfantInfo = this.props.house.infant_guest_eligible ? 'count' : 'don\'t count';
+    // let guestInfantInfo = this.props.house.infant_guest_eligible ? 'count' : 'don\'t count';
+    let guestInfantInfo = this.props.infantEligibility ? 'count' : 'don\'t count';
     let guestSyntax = this.props.total === 1 ? 'guest' : 'guests';
     let infantSyntax;
 
-    if (!this.props.house.infant_guest_eligible) {
+    if (!this.props.infantEligibility) {
       if (this.props.infants > 1) {
         infantSyntax = ', ' + this.props.infants + ' infants';
       } else if (this.props.infants === 1) {
@@ -157,7 +158,7 @@ class Guests extends React.Component {
 
         <div className='guestsType'>
           <p className='extraGuestInfo'>
-            {this.props.house.max_no_guests} guests maximum. Infants {guestInfantInfo} toward the number of guests.
+            {this.props.maxGuestCount} guests maximum. Infants {guestInfantInfo} toward the number of guests.
           </p>
         </div>
 
@@ -196,7 +197,7 @@ class Guests extends React.Component {
           <span className='infantsCount'
            style={{
              padding: this.state.infantPadding
-           }}>{!this.props.house.infant_guest_eligible && infantSyntax}</span>
+           }}>{!this.props.infantEligibility && infantSyntax}</span>
 
           <img src={this.state.guestArrow} className='guestsArrow'/>
 
