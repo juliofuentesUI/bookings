@@ -13,11 +13,15 @@ class App extends React.Component {
       guestChildren: 0,
       guestInfants: 0,
       currentCalendar: [],
-      currentMonth: 'July'
+      currentMonth: 'July',
+      checkInDate: 'Check-in',
+      checkOutDate: 'Checkout'
     }
 
     this.fetchCalendarData = this.fetchCalendarData.bind(this);
     this.updateGuestTotal = this.updateGuestTotal.bind(this);
+    this.updateCheckInDate = this.updateCheckInDate.bind(this);
+    this.updateCheckOutDate = this.updateCheckOutDate.bind(this);
   }
 
   componentDidMount() {
@@ -117,6 +121,18 @@ class App extends React.Component {
     }
   }
 
+  updateCheckInDate(date) {
+    this.setState({
+      checkInDate: date
+    })
+  }
+
+  updateCheckOutDate(date) {
+    this.setState({
+      checkOutDate: date
+    })
+  }
+
   render() {
     let price = (Number(this.state.listing.price_per_night)).toString();
 
@@ -139,7 +155,11 @@ class App extends React.Component {
           <Dates 
            fetchDates={this.fetchCalendarData}
            calendar={this.state.currentCalendar}
-           month={this.state.currentMonth}/>
+           month={this.state.currentMonth}
+           selectCheckIn={this.updateCheckInDate}
+           selectCheckOut={this.updateCheckOutDate}
+           checkIn={this.state.checkInDate}
+           checkOut={this.state.checkOutDate}/>
 
           <Guests 
            house={this.state.listing}

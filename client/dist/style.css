@@ -156,7 +156,8 @@ img {
 }
 
 .calendarContainer {
-  height: 333px;
+  /* height: 333px; */
+  height: auto;
   width: 332px;
   background-color: #fff;
   position: absolute;
@@ -167,11 +168,8 @@ img {
 
 .calendarContainer::after {
   content: '';
-  /* display: block; */
   position: absolute;
-  /* width: 0;
-  height: 0; */
-  top: -6%;
+  top: -5.45%;
   left: 8%;
   margin-left: -5px;
   border-width: 10px;
@@ -181,11 +179,8 @@ img {
 
 .calendarContainer::before {
   content: '';
-  /* display: block; */
   position: absolute;
-  /* width: 0;
-  height: 0; */
-  top: -6.5%;
+  top: -5.95%;
   left: 8%;
   margin-left: -5px;
   border-width: 10.4px;
@@ -238,9 +233,22 @@ img {
   margin: 0 0 0 20px;
 }
 
+.clearDatesBtn {
+  border: 1px solid #fff;
+  margin: 5px 25px 20px 20px;
+  padding: 2px 0;
+  font-size: 14px;
+  background-color: #fff;
+  color: #007A87;
+  font-weight: 600;
+  float: right;
+}
+
+/* CALENDAR COMPONENT */
+
 table {
   border-collapse: collapse;
-  margin: 0 20px 0 20px;
+  margin: 0 20px 20px 20px;
 }
 
 tbody {
@@ -261,7 +269,17 @@ tbody {
   font-size: 13px;
 }
 
+.day:hover {
+  background-color: #e4e4e4;
+}
+
 .unavailableDay {
+  border: 1px solid #e4e4e4;
+  width: 39px;
+  height: 38px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 13px;
   color: #e4e4e4;
   text-decoration: line-through;
 }
