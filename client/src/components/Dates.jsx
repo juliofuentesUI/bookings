@@ -9,10 +9,13 @@ class Dates extends React.Component {
       checkOutColor: '#fff',
       checkInText: '#757575',
       checkOutText: '#757575',
-      showCalendar: false
+      showCheckInCalendar: false,
+      showCheckOutCalendar: false
     }
 
-    this.showCalendarPopUp = this.showCalendarPopUp.bind(this);
+    this.updateColor = this.updateColor.bind(this);
+    this.showCheckInCalendarPopUp = this.showCheckInCalendarPopUp.bind(this);
+    this.showCheckOutCalendarPopUp = this.showCheckOutCalendarPopUp.bind(this);
   }
 
   updateColor(type) {
@@ -21,23 +24,37 @@ class Dates extends React.Component {
       let textColor = this.state.checkInText === '#757575' ? '#007A87' : '#757575' ;
       this.setState({
         checkInColor: color,
-        checkInText: textColor
+        checkInText: textColor,
+        checkOutColor: '#fff',
+        checkOutText: '#757575'
       })
     } else if (type === 'Checkout') {
       let color = this.state.checkOutColor === '#fff' ? '#99EDE6' : '#fff';
       let textColor = this.state.checkOutText === '#757575' ? '#007A87' : '#757575' ;
       this.setState({
         checkOutColor: color,
-        checkOutText: textColor
+        checkOutText: textColor,
+        checkInColor: '#fff',
+        checkInText: '#757575'
       })
     }
   }
 
-  showCalendarPopUp() {
-    let show = this.state.showCalendar ? false : true;
+  showCheckInCalendarPopUp() {
+    let show = this.state.showCheckInCalendar ? false : true;
 
     this.setState({
-      showCalendar: show
+      showCheckInCalendar: show,
+      showCheckOutCalendar: false
+    })
+  }
+
+  showCheckOutCalendarPopUp() {
+    let show = this.state.showCheckOutCalendar ? false : true;
+
+    this.setState({
+      showCheckInCalendar: false,
+      showCheckOutCalendar: show
     })
   }
 
@@ -60,8 +77,8 @@ class Dates extends React.Component {
   }
 
   render() {
-    let calendarPopUp = (
-      <div className='calendarContainer'>
+    let calendarCheckInPopUp = (
+      <div className='calendarCheckInContainer'>
         <div className='swapMonth'>
           <img src='https://i.ibb.co/QkSRK9K/leftfacingarrow.png'
            className='calendarArrow'
@@ -90,7 +107,49 @@ class Dates extends React.Component {
          currMonth={this.props.month}
          currCalendar={this.props.calendar}
          updateCheckIn={this.props.selectCheckIn}
-         updateCheckOut={this.props.selectCheckOut}/>
+         updateCheckOut={this.props.selectCheckOut}
+         showCheckIn={this.state.showCheckInCalendar}
+         showCheckOut={this.state.showCheckOutCalendar}
+         updateDateColor={this.updateColor}
+         showCheckOutPopUp={this.showCheckOutCalendarPopUp}/>
+      </div>
+    )
+
+    let calendarCheckOutPopUp = (
+      <div className='calendarCheckOutContainer'>
+        <div className='swapMonth'>
+          <img src='https://i.ibb.co/QkSRK9K/leftfacingarrow.png'
+           className='calendarArrow'
+           onClick={() => {
+             this.changeMonth('previous', this.props.month);
+           }}/>
+        </div>
+        <p className='currentMonth'>{this.props.month} 2019</p>
+        <div className='swapMonth'>
+          <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png'
+           className='calendarArrow'
+           onClick={() => {
+             this.changeMonth('next', this.props.month);
+           }}/>
+        </div>
+        <ul className='daysContainer'>
+          <li className='weekdays firstDay'>Su</li>
+          <li className='weekdays'>Mo</li>
+          <li className='weekdays'>Tu</li>
+          <li className='weekdays'>We</li>
+          <li className='weekdays'>Th</li>
+          <li className='weekdays'>Fr</li>
+          <li className='weekdays'>Sa</li>
+        </ul>
+        <Calendar 
+         currMonth={this.props.month}
+         currCalendar={this.props.calendar}
+         checkInDate={this.props.checkIn}
+         updateCheckIn={this.props.selectCheckIn}
+         updateCheckOut={this.props.selectCheckOut}
+         showCheckIn={this.state.showCheckInCalendar}
+         showCheckOut={this.state.showCheckOutCalendar}
+         updateDateColor={this.updateColor}/>
       </div>
     )
 
@@ -102,7 +161,7 @@ class Dates extends React.Component {
           <div className='datesBtn'
           onClick={() => {
             this.updateColor('Check-in');
-            this.showCalendarPopUp();
+            this.showCheckInCalendarPopUp();
             this.props.fetchDates('June');
           }} 
           style={{
@@ -117,15 +176,17 @@ class Dates extends React.Component {
           <div className='datesBtn' 
           onClick={() => {
             this.updateColor('Checkout');
+            this.showCheckOutCalendarPopUp();
           }} 
           style={{
             backgroundColor: this.state.checkOutColor, 
             color: this.state.checkOutText
-          }}>Checkout</div>
+          }}>{this.props.checkOut}</div>
         
         </div>
 
-        {this.state.showCalendar && calendarPopUp}
+        {this.state.showCheckInCalendar && calendarCheckInPopUp}
+        {this.state.showCheckOutCalendar && calendarCheckOutPopUp}
 
       </div>
     )

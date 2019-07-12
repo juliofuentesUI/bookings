@@ -53,12 +53,22 @@ class Calendar extends React.Component {
     })
   }
 
-  handleDateClick(selectedDay) {
+  handleDateClick(selectedDay, type) {
     let year = selectedDay.slice(0,4);
     let month = selectedDay.slice(5,7);
     let day = selectedDay.slice(8,10);
     let date = month + '/' + day + '/' + year;
-    this.props.updateCheckIn(date);
+
+    if (type === 'Check-in') {
+      this.props.updateCheckIn(date);
+      this.props.updateDateColor('Check-in');
+      this.props.updateDateColor('Checkout');
+      this.props.showCheckOutPopUp();
+    } else if (type === 'Checkout') {
+      if (date > this.props.checkInDate) {
+        this.props.updateCheckOut(date);
+      }
+    }
   }
 
   underlineButton() {
@@ -70,8 +80,7 @@ class Calendar extends React.Component {
   }
 
   render() {
-    return (
-      <div className='monthContainer'>
+    let checkInCalendar = (
       <table>
         <tbody>
         {this.props.currCalendar.map((week, index) => {
@@ -81,7 +90,7 @@ class Calendar extends React.Component {
                 <td key={day.id} 
                  className={day.type}
                  onClick={() => {
-                   this.handleDateClick(day.date);
+                   this.handleDateClick(day.date, 'Check-in');
                  }}>
                   {day.hasOwnProperty('type') === 'emptyDay' && ''}
                   {day.hasOwnProperty('day') && day.day}
@@ -92,21 +101,50 @@ class Calendar extends React.Component {
         })}
         </tbody>
       </table>
+    )
+
+    let checkOutCalendar = (
+      <table>
+        <tbody>
+        {this.props.currCalendar.map((week, index) => {
+          return (
+            <tr key={index}>
+              {week.map((day) => (
+                <td key={day.id} 
+                 className={day.type}
+                 onClick={() => {
+                   this.handleDateClick(day.date, 'Checkout');
+                 }}>
+                   {day.hasOwnProperty('type') === 'emptyDay' && ''}
+                   {day.hasOwnProperty('day') && day.day}
+                </td>
+              ))}
+            </tr>
+          )
+        })}
+        </tbody>
+      </table>
+    )
+
+    return (
+      <div className='monthContainer'>
+        {this.props.showCheckIn && checkInCalendar}
+        {this.props.showCheckOut && checkOutCalendar}
       <div className='clearBtnContainer'>
         <button className='clearDatesBtn'
          onClick={() => {
-            this.props.updateCheckIn('Check-in');
-            this.unselectChangeColor();
-            this.props.updateCheckOut('Checkout');
+           this.props.updateCheckIn('Check-in');
+           this.unselectChangeColor();
+           this.props.updateCheckOut('Checkout');
          }}
          onMouseOver={() => {
-            this.underlineButton();
+           this.underlineButton();
          }}
          onMouseLeave={() => {
-            this.underlineButton();
+           this.underlineButton();
          }}
          style={{
-            textDecoration: this.state.textDecor
+           textDecoration: this.state.textDecor
          }}>Clear dates</button>
       </div>
       </div>

@@ -155,7 +155,7 @@ img {
   float: left;
 }
 
-.calendarContainer {
+.calendarCheckInContainer {
   /* height: 333px; */
   height: auto;
   width: 332px;
@@ -166,7 +166,7 @@ img {
   margin: 10px 0 0 0;
 }
 
-.calendarContainer::after {
+.calendarCheckInContainer::after {
   content: '';
   position: absolute;
   top: -5.45%;
@@ -177,11 +177,44 @@ img {
   border-color: transparent transparent #fff transparent;
 }
 
-.calendarContainer::before {
+.calendarCheckInContainer::before {
   content: '';
   position: absolute;
   top: -5.95%;
   left: 8%;
+  margin-left: -5px;
+  border-width: 10.4px;
+  border-style: solid;
+  border-color: transparent transparent #e4e4e4 transparent;
+}
+
+.calendarCheckOutContainer {
+  /* height: 333px; */
+  height: auto;
+  width: 332px;
+  background-color: #fff;
+  position: absolute;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+  border-radius: 3px;
+  margin: 10px 0 0 0;
+}
+
+.calendarCheckOutContainer::after {
+  content: '';
+  position: absolute;
+  top: -5.45%;
+  left: 61%;
+  margin-left: -5px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+.calendarCheckOutContainer::before {
+  content: '';
+  position: absolute;
+  top: -5.95%;
+  left: 61%;
   margin-left: -5px;
   border-width: 10.4px;
   border-style: solid;
@@ -377,6 +410,10 @@ tbody {
   border-radius: 20px;
 }
 
+.subtractBtn:focus {
+  outline: 0;
+}
+
 .addBtn {
   float: right;
   font-size: 15px;
@@ -384,6 +421,10 @@ tbody {
   border: 1px solid #007A87;
   padding: 4px 10px 7px 10px;
   border-radius: 20px;
+}
+
+.addBtn:focus {
+  outline: 0;
 }
 
 .subtractAdultsCountBtn {
