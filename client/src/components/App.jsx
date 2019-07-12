@@ -44,9 +44,47 @@ class App extends React.Component {
     axios.get(url)
     .then((results) => {
       // console.log('FETCH CALENDAR DATA RESULTS:')
-      // console.log(result.data);
+      // console.log(results.data);
+
+      let month = [];
+      let week = [];
+      let weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      let emptyBox = {
+        type: 'emptyDay'
+      };
+
+      for (var i = 0; i < results.data.length; i++) {
+        let currentDay = results.data[i];
+        currentDay['type'] = 'day';
+        if (i === 1 && currentDay.weekday !== 'Sunday') {
+          let firstIndex = weekdays.indexOf(currentDay.weekday);
+          for (var j = 1; j < firstIndex; j++) {
+            week.unshift(emptyBox);
+          }
+          week.push(currentDay); 
+        } else if (currentDay.weekday === 'Saturday' && i !== results.data.length-1) {
+          week.push(currentDay);
+          month.push(week);
+          week = [];
+        } else if (i === results.data.length-1) {
+          week.push(currentDay);
+          if (currentDay.weekday !== 'Saturday') {
+            let lastIndex = weekdays.indexOf(currentDay.weekday);
+            let lastEmptyBoxCount = weekdays.length - (lastIndex+1);
+            for (var k = 0; k < lastEmptyBoxCount; k++) {
+              week.push(emptyBox);
+            }
+          }
+          month.push(week);
+        } else {
+          week.push(currentDay);
+        }
+      }
+
+      console.log(month);
+
       this.setState({
-        currentCalendar: results.data,
+        currentCalendar: month,
         currentMonth: monthParam
       })
     })
