@@ -1,7 +1,8 @@
 #app {
   border: 1px solid #e4e4e4;
   width: 376px;
-  height: 462px;
+  /* height: 462px; */
+  height: auto;
   position: static;
   font-family: Circular, -apple-system, system-ui, 'Raleway', 'Montserrat', 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
@@ -13,8 +14,8 @@
 .bookings {
   border: 1px solid #fff;
   width: 326px;
-  height: 569px;
-  margin: 16px auto 24px auto;
+  height: auto;
+  margin: 16px auto 22px auto;
 }
 
 .dollarSign {
@@ -72,7 +73,8 @@
   border-top: 1px solid #e4e4e4;
   border-bottom: 1px solid #e4e4e4;
   margin: 20px 0 25px 0;
-  height: 275px;
+  /* height: 275px; */
+  height: auto;
 }
 
 .bookBtn {
@@ -91,7 +93,7 @@
   font-size: 12px;
   text-align: center;
   font-weight: 500;
-  margin: 0;
+  margin: 0 0 26px 0;
 }
 
 .highlight {
@@ -156,7 +158,6 @@ img {
 }
 
 .calendarCheckInContainer {
-  /* height: 333px; */
   height: auto;
   width: 332px;
   background-color: #fff;
@@ -169,7 +170,7 @@ img {
 .calendarCheckInContainer::after {
   content: '';
   position: absolute;
-  top: -5.45%;
+  top: -20px;
   left: 8%;
   margin-left: -5px;
   border-width: 10px;
@@ -180,7 +181,7 @@ img {
 .calendarCheckInContainer::before {
   content: '';
   position: absolute;
-  top: -5.95%;
+  top: -22px;
   left: 8%;
   margin-left: -5px;
   border-width: 10.4px;
@@ -189,7 +190,6 @@ img {
 }
 
 .calendarCheckOutContainer {
-  /* height: 333px; */
   height: auto;
   width: 332px;
   background-color: #fff;
@@ -202,7 +202,7 @@ img {
 .calendarCheckOutContainer::after {
   content: '';
   position: absolute;
-  top: -5.45%;
+  top: -20px;
   left: 61%;
   margin-left: -5px;
   border-width: 10px;
@@ -213,7 +213,7 @@ img {
 .calendarCheckOutContainer::before {
   content: '';
   position: absolute;
-  top: -5.95%;
+  top: -22px;
   left: 61%;
   margin-left: -5px;
   border-width: 10.4px;
@@ -484,4 +484,40 @@ tbody {
   color: #007A87;
   font-weight: 600;
   float: right;
+}
+
+/* QUOTE COMPONENT */
+
+.quotePanel {
+  color: #484848;
+}
+
+.fee {
+  border-bottom: 1px solid #e4e4e4;
+  margin: 0;
+  padding: 10px 0;
+  font-weight: 200;
+}
+
+.firstFee {
+  margin: 8px 0 0 0;
+}
+
+.charge {
+  float: right;
+}
+
+.total {
+  margin: 5px 0 0 0;
+  padding: 5px 0;
+  font-weight: 500;
+}
+
+.helpBtn {
+  border-radius: 100%;
+  border: 0.5px solid #484848;
+  font-family: 'Roboto';
+  font-size: 12px;
+  margin: 0 0 0 5px;
+  padding: 1px 5px;
 }

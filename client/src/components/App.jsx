@@ -1,6 +1,7 @@
 import React from 'react';
 import Dates from './Dates.jsx';
 import Guests from './Guests.jsx';
+import Quote from './Quote.jsx';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -210,7 +211,8 @@ class App extends React.Component {
            selectCheckIn={this.updateCheckInDate}
            selectCheckOut={this.updateCheckOutDate}
            checkIn={this.state.checkInDate}
-           checkOut={this.state.checkOutDate}/>
+           checkOut={this.state.checkOutDate}
+          />
 
           <Guests 
            house={this.state.listing}
@@ -223,7 +225,12 @@ class App extends React.Component {
            updateGuest={this.updateGuestTotal}
           />
 
-          {/* <Quote /> */}
+          {this.state.checkOutDate !== 'Checkout' && 
+          <Quote 
+           house={this.state.listing}
+           checkInDate={this.state.checkInDate}
+           checkOutDate={this.state.checkOutDate}
+          />}
           
           <button className='bookBtn'>Book</button>
           <p className='noCharge'>You won't be charged yet</p>

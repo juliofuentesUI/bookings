@@ -149,7 +149,9 @@ class Dates extends React.Component {
          updateCheckOut={this.props.selectCheckOut}
          showCheckIn={this.state.showCheckInCalendar}
          showCheckOut={this.state.showCheckOutCalendar}
-         updateDateColor={this.updateColor}/>
+         updateDateColor={this.updateColor}
+         showCheckOutPopUp={this.showCheckOutCalendarPopUp}
+         showCheckInPopUp={this.showCheckInCalendarPopUp}/>
       </div>
     )
 
@@ -177,6 +179,7 @@ class Dates extends React.Component {
           onClick={() => {
             this.updateColor('Checkout');
             this.showCheckOutCalendarPopUp();
+            this.props.fetchDates('June');
           }} 
           style={{
             backgroundColor: this.state.checkOutColor, 
