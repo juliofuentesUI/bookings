@@ -179,6 +179,7 @@ class Dates extends React.Component {
           onClick={() => {
             this.updateColor('Checkout');
             this.showCheckOutCalendarPopUp();
+            this.props.fetchDates('June');
           }} 
           style={{
             backgroundColor: this.state.checkOutColor, 

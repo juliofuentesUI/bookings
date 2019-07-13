@@ -170,7 +170,7 @@ img {
 .calendarCheckInContainer::after {
   content: '';
   position: absolute;
-  top: -5.45%;
+  top: -20px;
   left: 8%;
   margin-left: -5px;
   border-width: 10px;
@@ -181,7 +181,7 @@ img {
 .calendarCheckInContainer::before {
   content: '';
   position: absolute;
-  top: -5.95%;
+  top: -22px;
   left: 8%;
   margin-left: -5px;
   border-width: 10.4px;
@@ -202,7 +202,7 @@ img {
 .calendarCheckOutContainer::after {
   content: '';
   position: absolute;
-  top: -5.45%;
+  top: -20px;
   left: 61%;
   margin-left: -5px;
   border-width: 10px;
@@ -213,7 +213,7 @@ img {
 .calendarCheckOutContainer::before {
   content: '';
   position: absolute;
-  top: -5.95%;
+  top: -22px;
   left: 61%;
   margin-left: -5px;
   border-width: 10.4px;
