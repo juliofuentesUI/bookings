@@ -6,7 +6,11 @@ class Quote extends React.Component {
   }
 
   render() {
-    let price = (Math.round(this.props.house.price_per_night)).toString();
+    let price = Math.round(this.props.house.price_per_night);
+    let checkInDate = new Date(this.props.checkInDate);
+    let checkOutDate = new Date(this.props.checkOutDate);
+    let dayCount = (checkOutDate - checkInDate)/(60 * 60 * 24 * 1000);
+    let finalPrice = price * dayCount;
     let serviceFee = Math.round(this.props.house.service_fee);
 
     let cleaningFee = Math.round(Number(this.props.house.cleaning_fee));
@@ -64,15 +68,15 @@ class Quote extends React.Component {
       </div>
     )
 
-    let total = Number(price) + serviceFee + cleaningFee + extraGuestFee 
+    let total = finalPrice + serviceFee + cleaningFee + extraGuestFee 
     + securityDeposit + valueAddedTax + localTaxes;
 
     return (
       <div className='quotePanel'>
         <div className='fee firstFee'>
-          ${price} x 1 night
+          ${price} x {dayCount} {dayCount > 1 ? 'nights' : 'night'}
           <div className='charge'>
-            ${price}
+            ${finalPrice}
           </div>
         </div>
 
