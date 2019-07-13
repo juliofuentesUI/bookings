@@ -1,5 +1,6 @@
 import React from 'react';
 import Calendar from './Calendar.jsx';
+import style from '../style.css';
 
 class Dates extends React.Component {
   constructor(props) {
@@ -78,30 +79,30 @@ class Dates extends React.Component {
 
   render() {
     let calendarCheckInPopUp = (
-      <div className='calendarCheckInContainer'>
-        <div className='swapMonth'>
+      <div className={style.calendarCheckInContainer}>
+        <div className={style.swapMonth}>
           <img src='https://i.ibb.co/QkSRK9K/leftfacingarrow.png'
-           className='calendarArrow'
+           className={style.calendarArrow}
            onClick={() => {
              this.changeMonth('previous', this.props.month);
            }}/>
         </div>
-        <p className='currentMonth'>{this.props.month} 2019</p>
-        <div className='swapMonth'>
+        <p className={style.currentMonth}>{this.props.month} 2019</p>
+        <div className={style.swapMonth}>
           <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png'
-           className='calendarArrow'
+           className={style.calendarArrow}
            onClick={() => {
              this.changeMonth('next', this.props.month);
            }}/>
         </div>
-        <ul className='daysContainer'>
-          <li className='weekdays firstDay'>Su</li>
-          <li className='weekdays'>Mo</li>
-          <li className='weekdays'>Tu</li>
-          <li className='weekdays'>We</li>
-          <li className='weekdays'>Th</li>
-          <li className='weekdays'>Fr</li>
-          <li className='weekdays'>Sa</li>
+        <ul className={style.daysContainer}>
+          <li className={`${style.weekdays} ${style.firstDay}`}>Su</li>
+          <li className={style.weekdays}>Mo</li>
+          <li className={style.weekdays}>Tu</li>
+          <li className={style.weekdays}>We</li>
+          <li className={style.weekdays}>Th</li>
+          <li className={style.weekdays}>Fr</li>
+          <li className={style.weekdays}>Sa</li>
         </ul>
         <Calendar 
          currMonth={this.props.month}
@@ -116,30 +117,30 @@ class Dates extends React.Component {
     )
 
     let calendarCheckOutPopUp = (
-      <div className='calendarCheckOutContainer'>
-        <div className='swapMonth'>
+      <div className={style.calendarCheckOutContainer}>
+        <div className={style.swapMonth}>
           <img src='https://i.ibb.co/QkSRK9K/leftfacingarrow.png'
-           className='calendarArrow'
+           className={style.calendarArrow}
            onClick={() => {
              this.changeMonth('previous', this.props.month);
            }}/>
         </div>
-        <p className='currentMonth'>{this.props.month} 2019</p>
-        <div className='swapMonth'>
+        <p className={style.currentMonth}>{this.props.month} 2019</p>
+        <div className={style.swapMonth}>
           <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png'
-           className='calendarArrow'
+           className={style.calendarArrow}
            onClick={() => {
              this.changeMonth('next', this.props.month);
            }}/>
         </div>
-        <ul className='daysContainer'>
-          <li className='weekdays firstDay'>Su</li>
-          <li className='weekdays'>Mo</li>
-          <li className='weekdays'>Tu</li>
-          <li className='weekdays'>We</li>
-          <li className='weekdays'>Th</li>
-          <li className='weekdays'>Fr</li>
-          <li className='weekdays'>Sa</li>
+        <ul className={style.daysContainer}>
+          <li className={`${style.weekdays} ${style.firstDay}`}>Su</li>
+          <li className={style.weekdays}>Mo</li>
+          <li className={style.weekdays}>Tu</li>
+          <li className={style.weekdays}>We</li>
+          <li className={style.weekdays}>Th</li>
+          <li className={style.weekdays}>Fr</li>
+          <li className={style.weekdays}>Sa</li>
         </ul>
         <Calendar 
          currMonth={this.props.month}
@@ -156,11 +157,11 @@ class Dates extends React.Component {
     )
 
     return (
-      <div className='dates'>
-        <h5 className='datesLabel'>Dates</h5>
-        <div className='fieldBox'>
+      <div className={style.dates}>
+        <h5 className={style.datesLabel}>Dates</h5>
+        <div className={style.fieldBox}>
 
-          <div className='datesBtn'
+          <div className={style.datesBtn}
           onClick={() => {
             this.updateColor('Check-in');
             this.showCheckInCalendarPopUp();
@@ -171,11 +172,11 @@ class Dates extends React.Component {
             color: this.state.checkInText
           }}>{this.props.checkIn}</div>
           
-          <div className='datesArrow'>
+          <div className={style.datesArrow}>
             <img src='https://i.ibb.co/Xbr3WN0/rightfacingarrow.png'/>
           </div>
           
-          <div className='datesBtn' 
+          <div className={style.datesBtn} 
           onClick={() => {
             this.updateColor('Checkout');
             this.showCheckOutCalendarPopUp();

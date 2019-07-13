@@ -1,4 +1,5 @@
 import React from 'react';
+import style from '../style.css';
 
 class Quote extends React.Component {
   constructor(props) {
@@ -15,10 +16,10 @@ class Quote extends React.Component {
 
     let cleaningFee = Math.round(Number(this.props.house.cleaning_fee));
     let cleaningFeeBox = (
-      <div className='fee'>
+      <div className={style.fee}>
           Cleaning fee
-          <button className='helpBtn'>?</button>
-          <div className='charge'>
+          <button className={style.helpBtn}>?</button>
+          <div className={style.charge}>
             ${cleaningFee}
           </div>
       </div>
@@ -26,10 +27,10 @@ class Quote extends React.Component {
 
     let extraGuestFee = Math.round(Number(this.props.house.extra_guest_fee));
     let extraGuestFeeBox = (
-      <div className='fee'>
+      <div className={style.fee}>
         Extra guest fee
-        <button className='helpBtn'>?</button>
-        <div className='charge'>
+        <button className={style.helpBtn}>?</button>
+        <div className={style.charge}>
           ${extraGuestFee}
         </div>
       </div>
@@ -37,10 +38,10 @@ class Quote extends React.Component {
 
     let securityDeposit = Math.round(Number(this.props.house.security_deposit));
     let securityDepositBox = (
-      <div className='fee'>
+      <div className={style.fee}>
         Security deposit
-        <button className='helpBtn'>?</button>
-        <div className='charge'>
+        <button className={style.helpBtn}>?</button>
+        <div className={style.charge}>
           ${securityDeposit}
         </div>
       </div>
@@ -48,10 +49,10 @@ class Quote extends React.Component {
 
     let valueAddedTax = Math.round(Number(this.props.house.value_added_tax));
     let valueAddedTaxBox = (
-      <div className='fee'>
+      <div className={style.fee}>
         Value added tax
-        <button className='helpBtn'>?</button>
-        <div className='charge'>
+        <button className={style.helpBtn}>?</button>
+        <div className={style.charge}>
           ${valueAddedTax}
         </div>
       </div>
@@ -59,10 +60,10 @@ class Quote extends React.Component {
 
     let localTaxes = Math.round(Number(this.props.house.local_taxes));
     let localTaxesBox = (
-      <div className='fee'>
+      <div className={style.fee}>
         Local taxes
-        <button className='helpBtn'>?</button>
-        <div className='charge'>
+        <button className={style.helpBtn}>?</button>
+        <div className={style.charge}>
           ${localTaxes}
         </div>
       </div>
@@ -72,10 +73,10 @@ class Quote extends React.Component {
     + securityDeposit + valueAddedTax + localTaxes;
 
     return (
-      <div className='quotePanel'>
-        <div className='fee firstFee'>
+      <div className={style.quotePanel}>
+        <div className={`${style.fee} ${style.firstFee}`}>
           ${price} x {dayCount} {dayCount > 1 ? 'nights' : 'night'}
-          <div className='charge'>
+          <div className={style.charge}>
             ${finalPrice}
           </div>
         </div>
@@ -86,16 +87,16 @@ class Quote extends React.Component {
         {this.props.house.value_added_tax !== null && valueAddedTaxBox}
         {this.props.house.local_taxes !== null && localTaxesBox}
 
-        <div className='fee'>
+        <div className={style.fee}>
           Service fee
-          <button className='helpBtn'>?</button>
-          <div className='charge'>
+          <button className={style.helpBtn}>?</button>
+          <div className={style.charge}>
             ${serviceFee}
           </div>
         </div>
-        <div className='total'>
+        <div className={style.total}>
           Total
-          <div className='charge'>
+          <div className={style.charge}>
             ${total}
           </div>
         </div>

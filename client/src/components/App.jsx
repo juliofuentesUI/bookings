@@ -3,6 +3,7 @@ import Dates from './Dates.jsx';
 import Guests from './Guests.jsx';
 import Quote from './Quote.jsx';
 import axios from 'axios';
+import style from '../style.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -189,21 +190,21 @@ class App extends React.Component {
     let price = (Number(this.state.listing.price_per_night)).toString();
 
     return (
-      <div className='bookings'>
-        <h1 className='dollarSign'>$</h1>
-        <h1 className='price'>{price}</h1>
-        <p className='perNight'>per night</p>
+      <div className={style.bookings}>
+        <h1 className={style.dollarSign}>$</h1>
+        <h1 className={style.price}>{price}</h1>
+        <p className={style.perNight}>per night</p>
 
-        <div className='starContainer'>
-          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
-          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
-          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
-          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
-          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className='stars'/>
-          <p className='reviewCount'>214</p>
+        <div className={style.starContainer}>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className={style.stars}/>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className={style.stars}/>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className={style.stars}/>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className={style.stars}/>
+          <img src='https://i.ibb.co/NWJ1j37/new-Teal-Star.png' className={style.stars}/>
+          <p className={style.reviewCount}>214</p>
         </div>
 
-        <div className='bookingFields'>
+        <div className={style.bookingFields}>
           <Dates 
            fetchDates={this.fetchCalendarData}
            calendar={this.state.currentCalendar}
@@ -232,15 +233,15 @@ class App extends React.Component {
            checkOutDate={this.state.checkOutDate}
           />}
           
-          <button className='bookBtn'>Book</button>
-          <p className='noCharge'>You won't be charged yet</p>
+          <button className={style.bookBtn}>Book</button>
+          <p className={style.noCharge}>You won't be charged yet</p>
         </div>
 
-        <p className='highlight'>
+        <p className={style.highlight}>
           This place is getting a lot of attention.
-          <img src='https://a0.muscache.com/airbnb/static/packages/icon-uc-light-bulb.1ffc0407.gif' className='lightBulb'/>
+          <img src='https://a0.muscache.com/airbnb/static/packages/icon-uc-light-bulb.1ffc0407.gif' className={style.lightBulb}/>
         </p>
-        <p className='successMetric'>It’s been viewed 500+ times in the past week.</p>
+        <p className={style.successMetric}>It’s been viewed 500+ times in the past week.</p>
       </div>
     )
   }

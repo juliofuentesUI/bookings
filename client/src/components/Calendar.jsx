@@ -1,4 +1,5 @@
 import React from 'react';
+import style from '../style.css';
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -93,14 +94,15 @@ class Calendar extends React.Component {
             <tr key={index}>
               {week.map((day) => (
                 <td key={day.id} 
-                 className={day.type}
+                 className={style[day.type]}
                  onClick={() => {
                    this.handleDateClick(day.date, 'Check-in');
                  }}>
                   {day.hasOwnProperty('type') === 'emptyDay' && ''}
                   {day.hasOwnProperty('day') && day.day}
                 </td>
-              ))}
+                )
+              )}
             </tr>
           )
         })}
@@ -116,7 +118,7 @@ class Calendar extends React.Component {
             <tr key={index}>
               {week.map((day) => (
                 <td key={day.id} 
-                 className={day.type}
+                 className={style[day.type]}
                  onClick={() => {
                    this.handleDateClick(day.date, 'Checkout');
                  }}>
@@ -132,11 +134,11 @@ class Calendar extends React.Component {
     )
 
     return (
-      <div className='monthContainer'>
+      <div className={style.monthContainer}>
         {this.props.showCheckIn && checkInCalendar}
         {this.props.showCheckOut && checkOutCalendar}
-      <div className='clearBtnContainer'>
-        <button className='clearDatesBtn'
+      <div className={style.clearBtnContainer}>
+        <button className={style.clearDatesBtn}
          onClick={() => {
            this.props.updateCheckIn('Check-in');
            this.unselectChangeColor();

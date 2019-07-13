@@ -1,7 +1,9 @@
 {
   "name": "bookings",
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>tests/src/setupTests.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>tests/src/setupTests.js"
+    ],
     "collectCoverage": true,
     "coverageDirectory": "./tests/coverage"
   },
@@ -36,10 +38,12 @@
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-export-extensions": "^6.22.0",
+    "css-loader": "^3.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^24.8.0",
+    "style-loader": "^0.23.1",
     "supertest": "^4.0.2",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"

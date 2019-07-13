@@ -1,4 +1,5 @@
 import React from 'react';
+import style from '../style.css';
 
 class Guests extends React.Component {
   constructor(props) {
@@ -77,7 +78,6 @@ class Guests extends React.Component {
   }
 
   render() {
-    // let guestInfantInfo = this.props.house.infant_guest_eligible ? 'count' : 'don\'t count';
     let guestInfantInfo = this.props.infantEligibility ? 'count' : 'don\'t count';
     let guestSyntax = this.props.total === 1 ? 'guest' : 'guests';
     let infantSyntax;
@@ -91,10 +91,10 @@ class Guests extends React.Component {
     }
 
     let guestsPanel = (
-      <div className='guestsPanel'>
-        <div className='guestsType'>
-          <div className='guestsOptionAdults'>Adults 
-            <button className='addBtn addAdultsCountBtn' 
+      <div className={style.guestsPanel}>
+        <div className={style.guestsType}>
+          <div className={style.guestsOptionAdults}>Adults 
+            <button className={`${style.addBtn} ${style.addAdultsCountBtn}`} 
              onClick={() => {
                this.props.updateGuest('add', 'adults');
                this.updateButtonColor('add');
@@ -103,8 +103,8 @@ class Guests extends React.Component {
                border: this.state.addBtnBorder,
                color: this.state.addBtnText
              }}>+</button>
-            <div className='guestsCount guestsAdultsCount'>{this.props.adults}</div>
-            <button className='subtractBtn subtractAdultsCountBtn'
+            <div className={`${style.guestsCount} ${style.guestsAdultsCount}`}>{this.props.adults}</div>
+            <button className={`${style.subtractBtn} ${style.subtractAdultsCountBtn}`}
              onClick={() => {
                this.props.updateGuest('subtract', 'adults');
                this.updateButtonColor('subtract');
@@ -116,9 +116,9 @@ class Guests extends React.Component {
           </div>
         </div>
 
-        <div className='guestsType'>
-          <div className='guestsOption'>Children
-            <button className='addBtn addChildrenCountBtn'
+        <div className={style.guestsType}>
+          <div className={style.guestsOption}>Children
+            <button className={`${style.addBtn} ${style.addChildrenCountBtn}`}
              onClick={() => {
                this.props.updateGuest('add', 'children');
                this.updateButtonColor('add');
@@ -127,8 +127,8 @@ class Guests extends React.Component {
                 border: this.state.addBtnBorder,
                 color: this.state.addBtnText
              }}>+</button>
-            <div className='guestsCount guestsChildrenCount'>{this.props.children}</div>
-            <button className='subtractBtn subtractChildrenCountBtn'
+            <div className={`${style.guestsCount} ${style.guestsChildrenCount}`}>{this.props.children}</div>
+            <button className={`${style.subtractBtn} ${style.subtractChildrenCountBtn}`}
              onClick={() => {
                this.props.updateGuest('subtract', 'children');
                this.updateButtonColor('subtract');
@@ -138,32 +138,32 @@ class Guests extends React.Component {
                 color: this.state.subtractBtnText
              }}>-</button>
           </div>
-          <p className='extraOptionInfo'>Ages 2-12</p>
+          <p className={style.extraOptionInfo}>Ages 2-12</p>
         </div>
 
-        <div className='guestsType'>
-          <div className='guestsOption'>Infants
-            <button className='addBtn addInfantsCountBtn'
+        <div className={style.guestsType}>
+          <div className={style.guestsOption}>Infants
+            <button className={`${style.addBtn} ${style.addInfantsCountBtn}`}
              onClick={() => {
                this.props.updateGuest('add', 'infants');
              }}>+</button>
-            <div className='guestsCount guestsInfantsCount'>{this.props.infants}</div>
-            <button className='subtractBtn subtractInfantsCountBtn'
+            <div className={`${style.guestsCount} ${style.guestsInfantsCount}`}>{this.props.infants}</div>
+            <button className={`${style.subtractBtn} ${style.subtractInfantsCountBtn}`}
              onClick={() => {
                this.props.updateGuest('subtract', 'infants');
              }}>-</button>
           </div>
-          <p className='extraOptionInfo'>Under 2</p>
+          <p className={style.extraOptionInfo}>Under 2</p>
         </div>
 
-        <div className='guestsType'>
-          <p className='extraGuestInfo'>
+        <div className={style.guestsType}>
+          <p className={style.extraGuestInfo}>
             {this.props.maxGuestCount} guests maximum. Infants {guestInfantInfo} toward the number of guests.
           </p>
         </div>
 
-        <div className='guestsClose'>
-          <button className='closeBtn'
+        <div className={style.guestsClose}>
+          <button className={style.closeBtn}
            onClick={() => {
              this.updateGuestField();
              this.showGuestsPanel();
@@ -174,9 +174,9 @@ class Guests extends React.Component {
     )
 
     return (
-      <div className='guests'>
-        <h5 className='guestsLabel'>Guests</h5>
-        <button className='fieldBox'
+      <div className={style.guests}>
+        <h5 className={style.guestsLabel}>Guests</h5>
+        <button className={style.fieldBox}
          style={{
            borderBottom: this.state.borderBottom,
            height: this.state.boxHeight
@@ -186,7 +186,7 @@ class Guests extends React.Component {
            this.showGuestsPanel();
          }}>
             
-          <div className='guestsBtn'
+          <div className={style.guestsBtn}
            style={{
              backgroundColor: this.state.guestColor,
              color: this.state.guestText,
@@ -194,12 +194,12 @@ class Guests extends React.Component {
            }}>{this.props.total} {guestSyntax}
           </div>
 
-          <span className='infantsCount'
+          <span className={style.infantsCount}
            style={{
              padding: this.state.infantPadding
            }}>{!this.props.infantEligibility && infantSyntax}</span>
 
-          <img src={this.state.guestArrow} className='guestsArrow'/>
+          <img src={this.state.guestArrow} className={style.guestsArrow}/>
 
         </button>
 
