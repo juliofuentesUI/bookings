@@ -67,6 +67,7 @@ class Calendar extends React.Component {
     } else if (type === 'Checkout') {
       if (date > this.props.checkInDate) {
         this.props.updateCheckOut(date);
+        this.props.showCheckOutPopUp();
       }
     }
   }
