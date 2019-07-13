@@ -150,7 +150,8 @@ class Dates extends React.Component {
          showCheckIn={this.state.showCheckInCalendar}
          showCheckOut={this.state.showCheckOutCalendar}
          updateDateColor={this.updateColor}
-         showCheckOutPopUp={this.showCheckOutCalendarPopUp}/>
+         showCheckOutPopUp={this.showCheckOutCalendarPopUp}
+         showCheckInPopUp={this.showCheckInCalendarPopUp}/>
       </div>
     )
 
