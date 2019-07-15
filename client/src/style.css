@@ -1,7 +1,7 @@
 :global(#app) {
   border: 1px solid #e4e4e4;
   width: 376px;
-  /* height: 462px; */
+  height: 462px;
   height: auto;
   position: static;
   font-family: Circular, -apple-system, system-ui, 'Raleway', 'Montserrat', 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
