@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/rooms/bookings/listings')
+    fetch('http://localhost:3000/rooms/bookings/listings')
     .then(res => res.json())
     .then((result) => {
       console.log(result[1]);
