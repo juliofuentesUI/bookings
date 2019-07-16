@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '..', 'client', 'dist')));
 
+
 app.all('/*', (req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
   next();

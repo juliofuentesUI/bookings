@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/rooms/bookings/listings')
+    fetch('/rooms/bookings/listings')
     .then(res => res.json())
     .then((result) => {
       console.log(result[1]);
@@ -45,8 +45,8 @@ class App extends React.Component {
     let url = `/rooms/bookings/dates/${monthParam}`;
     axios.get(url)
     .then((results) => {
-      // console.log('FETCH CALENDAR DATA RESULTS:')
-      // console.log(results.data);
+      console.log('FETCH CALENDAR DATA RESULTS:')
+      console.log(results.data);
 
       let month = [];
       let week = [];
